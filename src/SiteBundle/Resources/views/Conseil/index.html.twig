@@ -1,0 +1,77 @@
+{% extends "@Site\\index.html.twig" %}
+
+{% block content %}
+    <div id="wrapper">
+
+        <section id="inner-headline">
+            <div class="container">
+                <div class="row">
+                    <div class="span4">
+                        <div class="inner-heading">
+                            <h2>Nos <strong>conseils</strong></h2>
+                        </div>
+                    </div>
+                    <div class="span8">
+                        <ul class="breadcrumb">
+                            <li><a href="#"><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
+                            <li><a href="#">Portfolio</a><i class="icon-angle-right"></i></li>
+                            <li class="active">Portfolio 3 columns</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="post-heading" >
+                        <h3 style="color: #5C9CC7"><strong>Astuces, conseils et services </strong> </h3>
+                    </div>
+                    <div class="span5">
+                        <article>
+                            <div class="top-wrapper">
+
+                                <!-- start flexslider -->
+                                <div class="flexslider">
+                                    <ul class="slides">
+                                        {% for conseil in conseils %}
+                                            <li>
+                                                <img src="{{ asset ('uploads/conseils/'~conseil.image)}}" width="1583px" height="500px" alt="{{conseil.libelle}}" title="#{{conseil.id}}" />
+                                            <li>
+                                            {% endfor %}  
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="span7">
+                        
+                        <div class="accordion" id="accordion2">
+
+                            <div class="accordion-group">
+                                {% for conseil in conseils %}
+                                    <div class="accordion-heading">
+                                        <a class="accordion-toggle active" data-toggle="collapse" data-parent="#accordion" href="#{{ conseil.id }}">
+                                            <i class="icon-minus"></i> &nbsp &nbsp {{ conseil.libelle }}
+                                        </a>&nbsp &nbsp&nbsp &nbsp
+                                    </div>
+                                    <div id="{{ conseil.id }}" class="accordion-body collapse in">
+                                        <div class="accordion-inner" style="color: brown; text-align: justify">
+                                            <strong> {{ conseil.description }} </strong>
+                                        </div>
+                                    </div>
+                                    &nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp &nbsp &nbsp
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+{% endblock content %}

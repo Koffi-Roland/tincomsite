@@ -1,0 +1,37 @@
+{% extends '@App\\index.html.twig' %}
+
+{% block pageName %}
+    <h3 class="page-header"><i class="fa fa fa-bars"></i>
+        Album
+    </h3>
+{% endblock %}
+
+{% block panelHeading %}
+    Modifier un album
+{% endblock %}
+
+{% block content %}
+    <br>
+    <div  class="col-md-6 col-md-offset-3">
+        {{ form_start(form) }}
+        <div class='form-group'>
+            <label>Titre</label>s
+            {{ form_widget(form.titre,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class='form-group'>
+            <label>Description</label>
+            {{ form_widget(form.description,{'attr':{'class':'form-control'}}) }}
+        </div>
+        {{ form_widget(form) }}
+        <div class="form-group col-md-4">
+            <a class="btn btn-info btn-lg btn-block" href="{{ path('album_new') }}">Nouvel album</a>
+        </div>
+        <div class="form-group col-md-4">
+            <a class="btn-danger btn-lg btn-block" type="button" href="{{path('album_index')}}">Voir la liste</a>
+        </div>
+        <div class="form-group col-md-4">
+            <input class="btn-success btn-lg btn-block" type="submit" value="Modifier" />
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

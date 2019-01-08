@@ -1,0 +1,81 @@
+{% extends '@App\\index.html.twig' %}
+
+{% block pageName %}
+    <h3 class="page-header"><i class="fa fa fa-bars"></i>
+        Opportunite
+    </h3>
+{% endblock %}
+
+{% block panelHeading %}
+    Ajout d'une opportunite
+{% endblock %}
+
+{% block content %}
+    <br>
+    <div  class="col-md-6 col-md-offset-3">
+        {{ form_start(form) }} 
+        <div class='form-group'>
+            <label>Type opportunité</label>
+            {{ form_widget(form.typeOpportunite,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class='form-group col-md-6' style='position: relative; right: 15px;'>
+            <label>Date de lancement</label>
+            {{ form_widget(form.dateLancement,{'attr':{'class':'form-control datepicker', 'readonly' : 'readonly'}}) }}
+        </div>
+        <div class='form-group col-md-6' style='position: relative; left: 15px;'>
+            <label>Date de clôture</label>
+            {{ form_widget(form.dateCloture,{'attr':{'class':'form-control datetimepicker', 'readonly' : 'readonly'}}) }}
+        </div>
+        <div class='form-group'>
+            <label>Image du opportunite(300px * 200px)</label>
+            {{ form_widget(form.image,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class='form-group'>
+            <label>Titre</label>
+            {{ form_widget(form.titre,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class='form-group'>
+            <label>Libellé</label>
+            {{ form_widget(form.libelle,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class='form-group'>
+            <label>Description</label>
+            {{ form_widget(form.description,{'attr':{'class':'form-control'}}) }}
+        </div>
+        {{ form_widget(form) }}
+
+        <div class="form-group col-md-4">
+            <input class="btn-info btn-lg btn-block" type="reset" value="Réinitialiser" />
+        </div>
+        <div class="form-group col-md-4">
+            <a class="btn-danger btn-lg btn-block" type="button" href="{{path('opportunite_index')}}">Voir la liste</a>
+        </div>
+        <div class="form-group col-md-4">
+            <input class="btn-success btn-lg btn-block" type="submit" value="Ajouter" />
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent()}}
+    <script>
+        $('.datepicker').datepicker().on('changeDate', function (e) {
+            var maDate = e.date;
+
+            var new_options = {
+                language: 'fr',
+                startDate: maDate,
+                autoclose: true
+            };
+
+            //var value = $('.datetimepicker').datetimepicker('getDate');
+            // Destroy previous datepicker
+            $('.datetimepicker').datetimepicker("remove");
+            // Re-int with new options
+            $('.datetimepicker').datetimepicker(new_options);
+            // Set previous value
+            //$('.datetimepicker').datetimepicker('setDate', value);
+
+        });
+    </script>
+{% endblock %}

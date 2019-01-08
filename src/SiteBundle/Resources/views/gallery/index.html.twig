@@ -1,0 +1,64 @@
+{% extends "@Site\\index.html.twig" %}
+
+{% block content %}
+    <div id="wrapper">
+
+        <section id="inner-headline">
+            <div class="container">
+                <div class="row">
+                    <div class="span4">
+                        <div class="inner-heading">
+                            <h2>Notre <strong>gallery</strong></h2>
+                        </div>
+                    </div>
+                    <div class="span8">
+                        <ul class="breadcrumb">
+                            <li><a href="#"><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
+                            <li><a href="#">Portfolio</a><i class="icon-angle-right"></i></li>
+                            <li class="active">Portfolio 3 columns</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <ul class="portfolio-categ filter">
+                            {% for album in albums %}
+                                <li{% if album.id == selectedAlbum.id %} class="active"{% endif %}>
+                                    <a href="{{ path('images_album_page', {'selectedAlbum':album.id}) }}">{{ album.titre }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="clearfix">
+                        </div>
+
+                        <div class="row">
+                            <section id="projects">
+                                <ul id="thumbs" class="portfolio">
+                                    <!-- Item Project and Filter Name -->
+                                    {% for image in images %}
+                                        <li class="item-thumbs span3 design" data-id="id-0" data-type="web">
+                                            <!-- Fancybox - Gallery Enabled - Title - Full Image -->
+                                            <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="{{image.titre|capitalize}}" href="{{  asset('uploads/images/'~image.image)}}">
+                                                <span class="overlay-img"></span>
+                                                <span class="overlay-img-thumb font-icon-plus"></span>
+                                            </a>
+                                            <!-- Thumb Image and Description -->
+                                            <img src="{{  asset('uploads/images/'~image.image) }}" alt="{{image.description}}">
+                                        </li>
+                                    {% endfor %}
+
+                                </ul>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+{% endblock content %}

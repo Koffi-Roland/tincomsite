@@ -1,0 +1,41 @@
+{% extends '@App\\index.html.twig' %}
+
+{% block pageName %}
+    <h3 class="page-header"><i class="fa fa fa-bars"></i>
+        Sous type de distributeur
+    </h3>
+{% endblock %}
+
+{% block panelHeading %}
+    Ajout d'un sous type de distributeur
+{% endblock %}
+
+
+{% block content %}
+    <br>
+    <div  class="col-md-6 col-md-offset-3">
+        {{ form_start(form) }} 
+        <div class='form-group'>
+            <label>Type de distributeur</label>
+            {{ form_widget(form.typeDistributeur,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class='form-group'>
+            <label>Libellé</label>
+            {{ form_widget(form.libelle,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class='form-group'>
+            <label>Image</label>
+            {{ form_widget(form.image) }}
+        </div>
+        <div class="form-group col-md-4">
+            <input class="btn-info btn-lg btn-block" type="reset" value="Réinitialiser" />
+        </div>
+        <div class="form-group col-md-4">
+            <a class="btn-danger btn-lg btn-block" type="button" href="{{path('typedistributeur_index')}}">Voir la liste</a>
+        </div>
+        <div class="form-group col-md-4">
+            <input class="btn-success btn-lg btn-block" type="submit" value="Ajouter" />
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

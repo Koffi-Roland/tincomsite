@@ -1,0 +1,62 @@
+{% extends '@App\\index.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{asset('admin/css/lightbox.css')}}">
+    <!-- MDBootstrap Datatables  -->
+    <link href="{{asset('admin/css/addons/datatables.min.css" rel="stylesheet')}}">
+{% endblock %}
+
+{% block pageName %}
+    <h3 class="page-header"><i class="fa fa fa-bars"></i>
+        Types de distributeur
+    </h3>
+{% endblock %}
+
+{% block panelHeading %}
+
+    Liste des types de distributeurs
+
+{% endblock %}
+
+{% block content %}
+    <fieldset legend="Gestion de typeDistributeur">
+        <div class="panel panel-success">    
+            <a class="btn btn-info" href="{{ path('typedistributeur_new') }}">Nouveau type de distributeur</a>
+            <div class="table-responsive">
+                <table id="dtBasicExample" class="table table-bordered table-striped table-sm" cellspacing="0" width="100%">
+                    <thead class="black white-text">
+                        <tr>
+                            <th>Id</th>
+                            <th>Libellé</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for typeDistributeur in typeDistributeurs %}
+                            <tr>
+                                <td>{{ typeDistributeur.id }}</td>
+                                <td>{{ typeDistributeur.libelle|capitalize }}</td>
+                                <td>
+                                    <a class="btn btn-success" href="{{ path('typedistributeur_edit', { 'id': typeDistributeur.id }) }}"><i class="fa fa-pencil"></i></a> 
+                                    <a onclick="return confirm('Etes-vous sûr de vouloir supprimer ce typeDistributeur')" class="btn btn-danger" href="{{ path('typedistributeur_delete', { 'id': typeDistributeur.id }) }}"><i class="icon_close_alt2"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+    </fieldset>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{asset('admin/js/lightbox.js')}}"></script>
+    <script type="text/javascript" src="{{asset('admin/js/addons/datatables.min.js')}}"></script>
+    <script>
+                                        $(document).ready(function () {
+                                            $('#dtBasicExample').DataTable();
+                                            $('.dataTables_length').addClass('bs-select');
+                                        });
+    </script>
+{% endblock %}

@@ -1,0 +1,163 @@
+{% extends "@Site\\index.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+   integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+   crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+   integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+   crossorigin=""></script>
+   <style>
+       #mapid{
+            height: 400px;
+            margin-bottom: 40px;
+       }
+   </style>
+    {{parent()}}
+{% endblock %}
+
+{% block Panel %}
+    <section id="inner-headline">
+        <div class="container">
+            <div class="row">
+                <div class="span4">
+                    <div class="inner-heading">
+                        <h2>Contactez nous</h2>
+                    </div>
+                </div>
+                <div class="span8">
+                    <ul class="breadcrumb">
+                        <li class="active">Contact</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock Panel %}
+
+{% block content %}
+    <section id="content">
+        <div id="mapid"></div>
+
+        <div class="container">
+            <div class="row">
+                <div class="span12" border="2">
+                    <center><h5><u><b>Distributeurs</b></u></h5></center>
+                    <ul id="myTab" class="nav nav-tabs">
+                        {% for typeDistributeur in typeDistibuteurs %}
+                        <li class="{% if loop.index == 1 %}active in{% endif %}"><a href="#type{{ typeDistributeur.id }}" data-toggle="tab">{{ typeDistributeur.libelle }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                    {% for typeDistributeur in typeDistibuteurs %}
+                        <div class="tab-pane fade {% if loop.index == 1 %}active in{% endif %}" id="type{{ typeDistributeur.id }}">
+                            {% for sousTypeDistributeur in typeDistributeur.sousTypeDistributeurs %}
+                                {% if distributeurs_array[sousTypeDistributeur.id] is defined %}
+                                <center><h6><u>{{ sousTypeDistributeur.libelle }}</u></h6></center>
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        {% for distributeur in distributeurs_array[sousTypeDistributeur.id] %}
+                                            <tr>
+                                                <td>{{ distributeur.nom }}</td>
+                                                <td>{{ distributeur.telephone }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    <h4>Contactez-nous en remplissant le <strong>formulaire de contact ci-dessous</strong></h4>
+
+                    <form action="" method="post" role="form" class="contactForm">
+                        <div id="sendmessage">Votre message a été envoyé. Nous vous remercions!</div>
+                        <div id="errormessage"></div>
+
+                        <div class="row">
+                            <div class="span4 form-group">
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Votre nom" data-rule="minlen:4" data-msg="Veuillez entrer au moins 4 caractères" />
+                                <div class="validation"></div>
+                            </div>
+                            <div class="span4 form-group">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Votre Email" data-rule="email" data-msg="Veuillez entrer un email valide" />
+                                <div class="validation"></div>
+                            </div>
+                            <div class="span4 form-group">
+                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Sujet" data-rule="minlen:4" data-msg="Veuillez entrer au moins 8 caractères du sujet" />
+                                <div class="validation"></div>
+                            </div>
+                            <div class="span12 margintop10 form-group">
+                                <textarea class="form-control" name="message" rows="12" data-rule="required" data-msg="Ecrivez quelque chose pour nous, s'il vous plaît" placeholder="Votre message"></textarea>
+                                <div class="validation"></div>
+                                <p class="text-center">
+                                    <button class="btn btn-large btn-theme margintop10" type="submit">Envoyer</button>
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block javascripts %}
+    {{ parent() }}
+    
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    
+    <script src="{{ asset('site/js/bootstrap-tab.js') }}"></script>
+    <script src="{{ asset('site/contactform/contactform.js') }}"></script>
+    <script>
+        var mymap = L.map('mapid').setView([6.156487, 1.300566], 12);
+
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox.streets',
+            accessToken: 'pk.eyJ1IjoibXlyZXN0b3F1aWNrNyIsImEiOiJjam1pd3lmY3kwNDkwM3JtbzcyOWdwcHBrIn0.QX87XLvMPunnAkCE1WaZ0Q'
+        }).addTo(mymap);
+        
+        /*function onMapClick(e) {
+            alert("You clicked the map at " + e.latlng);
+        }
+
+        mymap.on('click', onMapClick);*/
+        
+        var marker = L.marker([6.156487, 1.300566]).addTo(mymap);
+        marker.bindPopup("<b>Sodigaz</b><br>" +
+                         "Zone industrielle de Lomé, Route d'Aného,<br>" +
+                         "08 BP : 8535,<br>" +
+                         "Lomé - Togo<br>" +
+                         "Téléphone : +228 22 27 20 00 / 22 39 32 24<br>" +
+                         "Fax : +228 22 27 20 02<br>" +
+                         "Service commercial : +228 22 39 34 10 / 99 48 00 10 / 90 05 94 85<br>"
+                        )
+                  .openPopup();
+          
+    {% for distributeur in distributeurs %}
+        var marker{{ distributeur.id}} = L.marker([{{ distributeur.latitude }}, {{ distributeur.longitude }}], {
+        icon: L.icon({
+                iconUrl: '{{ asset("uploads/distributeurs/" ~ distributeur.sousTypeDistributeur.image) }}',
+                iconSize: [38, 40],
+                iconAnchor: [22, 94],
+                popupAnchor: [-3, -76],
+                shadowUrl: 'my-icon-shadow.png',
+                shadowSize: [68, 95],
+                shadowAnchor: [22, 94]
+            })
+        }).addTo(mymap);
+        marker{{ distributeur.id }}.bindPopup("<b>{{ distributeur.sousTypeDistributeur.libelle }}</b><br>" +
+                         "{{ distributeur.nom }},<br>" +
+                         "{{ distributeur.telephone }}<br>"
+                        );
+    {% endfor %}
+    </script>
+{% endblock %}

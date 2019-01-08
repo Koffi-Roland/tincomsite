@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>
+            {% block title %}
+                TINCOM
+            {% endblock %}
+        </title>
+        {% block stylesheets %}
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('logo_icon.png') }}" />
+    </head>
+    <body>
+        {% block body %}
+        {% endblock %}
+        
+        {% block javascripts %}
+        {% endblock %}
+    </body>
+</html>
+
+

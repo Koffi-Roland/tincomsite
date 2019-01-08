@@ -1,0 +1,75 @@
+{% extends "@Site\\index.html.twig" %}
+
+{% block stylesheets %}
+    {{parent()}}
+    <link id="bodybg" href="{{('site/bodybg/bg1.css')}}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+    <div id="wrapper">
+        <section id="inner-headline">
+            <div class="container">
+                <div class="row">
+                    <div class="span4">
+                        <div class="inner-heading">
+                            <h2>Nos produits</h2>
+                        </div>
+                    </div>
+                    {#<div class="span8">
+                        <ul class="breadcrumb">
+                            <li><a href="#"><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
+                            <li><a href="#">Pages</a><i class="icon-angle-right"></i></li>
+                            <li class="active">{{ page.libelle }}</li>
+                        </ul>
+                    </div>#}
+                </div>
+            </div>
+        </section>
+        <section id="content">
+            <div class="container">
+                <div class="row">
+                    <center>
+                        <h3>Catalogue des produits sodigaz</h3>
+
+                        <ul class="nav nav-pills" id="myTab">
+                            {% for categorieProduit in categorieProduits %}
+                            <li{% if categorieProduit.id == selectedCategorieProduit.id %} class="active"{% endif %}>
+                                <a href='{{ path('produits_categorie_page', {'selectedCategorieProduit':categorieProduit.id}) }}'>{{ categorieProduit.libelle }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </center>
+                </div>
+                <div class="row">
+                    <div class='col-md-12'>
+                        <!--div class="col-lg-4 col-md-3 col-sm-2"-->
+                        <ul class='thumbnails'>
+                            {% for produit in produits %}
+                            <li class='span4'>
+                                <div class="thumbnail">
+                                    <img src='{{ asset('uploads/produits/' ~ produit.image) }}' style="width: 300px; height: 200px;">
+                                    <div class="caption" style='border-bottom: none;'>
+                                    <center><h3>{{ produit.libelle }}</h3></center>
+                                      <p><justify>{{ produit.description }}</justify></p>
+                                      {% if produit.prixGaz is not null %}
+                                          <p><em><b>Prix du gaz: &nbsp; {{ produit.prixGaz }}FCFA</em></b></p>
+                                      {% endif %}
+                                      <p>
+                                        <a><span class='badge badge-success'>{{ produit.prixProduit }} FCFA</span></a>
+                                      </p>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <!--/div-->
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </div>
+    <div class="navigation">
+        {{ knp_pagination_render(produits) }}
+    </div>
+{% endblock content %}

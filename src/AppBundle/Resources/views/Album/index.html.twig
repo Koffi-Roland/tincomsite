@@ -1,0 +1,62 @@
+{% extends '@App\\index.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <!-- MDBootstrap Datatables  -->
+    <link href="{{asset('admin/css/addons/datatables.min.css" rel="stylesheet')}}">
+{% endblock %}
+
+{% block pageName %}
+    <h3 class="page-header"><i class="fa fa fa-bars"></i>
+        Album
+    </h3>
+{% endblock %}
+
+{% block panelHeading %}
+
+    Liste des albums
+
+{% endblock %}
+
+{% block content %}
+    <fieldset legend="Gestion de album">
+        <div class="panel panel-success">    
+            <a class="btn btn-info" href="{{ path('album_new') }}">Nouvel album</a>
+            <div class="table-responsive">
+                <table id="dtBasicExample" class="table table-bordered table-striped table-sm" cellspacing="0" width="100%">
+                    <thead class="black white-text">
+                        <tr>
+                            <th>Id</th>
+                            <th>Titre</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for album in albums %}
+                            <tr>
+                                <td>{{ album.id }}</td>
+                                <td>{{ album.titre|capitalize }}</td>
+                                <td>{{ album.description }}</td>
+                                <td>
+                                    <a class="btn btn-success" href="{{ path('album_edit', { 'id': album.id }) }}"><i class="fa fa-pencil"></i></a> 
+                                    <a onclick="return confirm('Etes-vous sûr de vouloir supprimer ce album')" class="btn btn-danger" href="{{ path('album_delete', { 'id': album.id }) }}"><i class="icon_close_alt2"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+    </fieldset>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{asset('admin/js/addons/datatables.min.js')}}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dtBasicExample').DataTable();
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+{% endblock %}

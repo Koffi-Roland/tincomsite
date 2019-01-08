@@ -1,0 +1,48 @@
+{% extends '@App\\index.html.twig' %}
+
+{% block pageName %}
+    <h3 class="page-header"><i class="fa fa fa-bars"></i>
+        Partenaire
+    </h3>
+     <div class="form-group col-md-2">
+            <a class="btn btn-info" type="button" href="{{path('partenaire_index')}}">Voir la liste</a>
+        </div>
+{% endblock %}
+
+{% block panelHeading %}
+    Ajout d'un partenaire
+{% endblock %}
+
+
+{% block content %}
+    <br>
+    <div  class="col-md-6 col-md-offset-3">
+        {{ form_start(form) }} 
+        <div class='form-group'>
+            <label>Catégorie partenaires</label>
+            {{ form_widget(form.categoriePartenaire,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class='form-group'>
+            <label>Nom</label>
+            {{ form_widget(form.nom,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class='form-group'>
+            <label>Image</label>
+            {{ form_widget(form.image,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class='form-group'>
+            <label>Lien</label>
+            {{ form_widget(form.lien,{'attr':{'class':'form-control'}}) }}
+        </div>
+        {{ form_widget(form) }}
+
+        <div class="form-group col-md-4">
+            <input class="btn-info btn-lg btn-block" type="reset" value="Réinitialiser" />
+        </div>
+       
+        <div class="form-group col-md-4">
+            <input class="btn-success btn-lg btn-block" type="submit" value="Ajouter" />
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

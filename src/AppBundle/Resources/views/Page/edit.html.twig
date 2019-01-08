@@ -1,0 +1,37 @@
+{% extends '@App\\index.html.twig' %}
+
+{% block pageName %}
+    <h3 class="page-header"><i class="fa fa fa-bars"></i>
+        Page
+    </h3>
+{% endblock %}
+
+{% block panelHeading %}
+    Modifier un page
+{% endblock %}
+
+{% block content %}
+    <br>
+    <div  class="col-md-8 col-md-offset-2">
+        {{ form_start(form) }}
+        <div class="form-group">
+            <label>Libellé</label>
+            {{ form_widget(form.libelle,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class='form-group'>
+            <label>Contenu de la page</label>
+            {{ form_widget(form.contenu,{'attr':{'class':'form-control'}}) }}
+        </div>
+        {{ form_widget(form) }}
+        <div class="form-group col-md-4">
+            <a class="btn btn-info btn-lg btn-block" href="{{ path('page_new') }}">Nouvelle page</a>
+        </div>
+        <div class="form-group col-md-4">
+            <a class="btn-danger btn-lg btn-block" type="button" href="{{path('page_index')}}">Voir la liste</a>
+        </div>
+        <div class="form-group col-md-4">
+            <input class="btn-success btn-lg btn-block" type="submit" value="Modifier" />
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends '@App\\index.html.twig' %}
+
+{% block pageName %}
+    <h3 class="page-header"><i class="fa fa fa-bars"></i>
+        Page
+    </h3>
+     <div class="form-group col-md-2">
+            <a class=" btn btn-info "  href="{{path('page_index')}}">Voir la liste</a>
+        </div>
+{% endblock %}
+
+{% block panelHeading %}
+    Ajout d'une page
+{% endblock %}
+
+
+{% block content %}
+    <br>
+    <div  class="col-md-8 col-md-offset-2">
+        {{ form_start(form) }} 
+        <div class='form-group'>
+            <label>Libellé</label>
+            {{ form_widget(form.libelle,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class='form-group'>
+            <label>Contenu de la page</label>
+            {{ form_widget(form.contenu,{'attr':{'class':'form-control'},id:"editor"}) }}
+        </div>
+        {{ form_widget(form) }}
+
+        <div class="form-group col-md-4">
+            <input class="btn-info btn-lg btn-block" type="reset" value="Réinitialiser" />
+        </div>
+       
+        <div class="form-group col-md-4">
+            <input class="btn-success btn-lg btn-block" type="submit" value="Ajouter" />
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{parent()}}
+    <textarea name="editor1"></textarea>
+    <script type="text/javascript" src="{{asset('bundles/fosckeditor/ckeditor.js')}}"></script>
+    <script>
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        CKEDITOR.replace('editor');
+    </script>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends '@App\\index.html.twig' %}
+
+{% block pageName %}
+    <h3 class="page-header"><i class="fa fa fa-bars"></i>
+        Distributeurs
+    </h3>
+{% endblock %}
+
+{% block panelHeading %}
+    Ajout d'un distributeur
+{% endblock %}
+
+
+{% block content %}
+    <br>
+    <div  class="col-md-6 col-md-offset-3">
+        {{ form_start(form) }} 
+        <div class='form-group'>
+            <label>Sous Type de distributeur</label>
+            {{ form_widget(form.sousTypeDistributeur,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class='form-group'>
+            <label>Nom</label>
+            {{ form_widget(form.nom,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class='form-group'>
+            <label>Téléphone</label>
+            {{ form_widget(form.telephone,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class='form-group'>
+            <label>Latitude</label>
+            {{ form_widget(form.latitude,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class='form-group'>
+            <label>Longitude</label>
+            {{ form_widget(form.longitude,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class="form-group col-md-4">
+            <input class="btn-info btn-lg btn-block" type="reset" value="Réinitialiser" />
+        </div>
+        <div class="form-group col-md-4">
+            <a class="btn-danger btn-lg btn-block" type="button" href="{{path('distributeur_index')}}">Voir la liste</a>
+        </div>
+        <div class="form-group col-md-4">
+            <input class="btn-success btn-lg btn-block" type="submit" value="Ajouter" />
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

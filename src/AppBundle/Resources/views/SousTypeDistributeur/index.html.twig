@@ -1,0 +1,64 @@
+{% extends '@App\\index.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{asset('admin/css/lightbox.css')}}">
+    <!-- MDBootstrap Datatables  -->
+    <link href="{{asset('admin/css/addons/datatables.min.css" rel="stylesheet')}}">
+{% endblock %}
+
+{% block pageName %}
+    <h3 class="page-header"><i class="fa fa fa-bars"></i>
+        Sous Types de distributeur
+    </h3>
+{% endblock %}
+
+{% block panelHeading %}
+
+    Liste des sous types de distributeurs
+
+{% endblock %}
+
+{% block content %}
+    <fieldset legend="Gestion de typeDistributeur">
+        <div class="panel panel-success">    
+            <a class="btn btn-info" href="{{ path('soustypedistributeur_new') }}">Nouveau sous type de distributeur</a>
+            <div class="table-responsive">
+                <table id="dtBasicExample" class="table table-bordered table-striped table-sm" cellspacing="0" width="100%">
+                    <thead class="black white-text">
+                        <tr>
+                            <th>Image</th>
+                            <th>Type de distributeur</th>
+                            <th>Libellé</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for sousTypeDistributeur in sousTypeDistributeurs %}
+                            <tr>
+                                <td><img src="{{ asset("uploads/distributeurs/" ~ sousTypeDistributeur.image) }}" alt="image" style="width: 50px;" /></td>
+                                <td>{{ sousTypeDistributeur.id}}</td>
+                                <td>{{ sousTypeDistributeur.typeDistributeur.libelle|capitalize }}</td>
+                                <td>{{ sousTypeDistributeur.libelle|capitalize }}</td>
+                                <td>
+                                    <a class="btn btn-success" href="{{ path('soustypedistributeur_edit', { 'id': sousTypeDistributeur.id }) }}"><i class="fa fa-pencil"></i></a> 
+                                    <a onclick="return confirm('Etes-vous sûr de vouloir supprimer ce sous type de Distributeur?')" class="btn btn-danger" href="{{ path('soustypedistributeur_delete', { 'id': sousTypeDistributeur.id }) }}"><i class="icon_close_alt2"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+    </fieldset>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{asset('admin/js/addons/datatables.min.js')}}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dtBasicExample').DataTable();
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+{% endblock %}

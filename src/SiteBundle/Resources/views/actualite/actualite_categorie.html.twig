@@ -1,0 +1,55 @@
+{% extends "@Site\\index.html.twig" %}
+
+{% block stylesheets %}
+    {{parent()}}
+    <link id="bodybg" href="{{('site/bodybg/bg1.css')}}" rel="stylesheet" type="text/css" />
+    <style>
+        .actualite_titre{
+            color: #0088cc;
+        }
+        .actualite_titre:hover{
+            text-decoration: none;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div id="wrapper">
+        <section id="inner-headline">
+            <div class="container">
+                <div class="row">
+                    <div class="span4">
+                        <div class="inner-heading">
+                            <h2>Actualités</h2>
+                        </div>
+                    </div>
+                    <div class="span8">
+                        <ul class="breadcrumb">
+                            <li><a href="{{ path('actualite_sodigaz') }}">Actualités</a><i class="icon-angle-right"></i></li>
+                            <li class="active">{{ selectedCategorieActualite.libelle }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="content">
+            <div class="container">
+                <div class="row">
+                    <center>
+                        <h2><b><u>{{ selectedCategorieActualite.libelle }}</u></b></h2>
+                    </center>
+                    <div class="text-center">
+                        <ul class="nav nav-pills" id="myTab">
+                            <li><a href='{{ path('actualite_sodigaz') }}'>Tous</a></li>
+                            {% for categorieActualite in categorieActualites %}
+                            <li{% if selectedCategorieActualite.id == categorieActualite.id %} class="active"{% endif %}><a href='{{ path('actualite_categorie_sodigaz', {'selectedCategorieActualite':categorieActualite.id}) }}'>{{ categorieActualite.libelle }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% include 'SiteBundle:actualite:actualite_liste.html.twig' %}
+            </div>
+            
+        </section>
+    </div>
+{% endblock content %}

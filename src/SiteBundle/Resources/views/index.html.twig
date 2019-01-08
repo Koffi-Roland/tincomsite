@@ -1,0 +1,339 @@
+{% extends "base.html.twig" %}
+
+{% block titre %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block stylesheets %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400italic,700|Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="{{ asset('site/css/bootstrap.css')}}" rel="stylesheet" />
+    <link href="{{ asset('site/css/bootstrap-responsive.css')}}" rel="stylesheet" />
+    <link href="{{ asset('site/css/fancybox/jquery.fancybox.css')}}" rel="stylesheet">
+    <link href="{{ asset('site/css/jcarousel.css')}}" rel="stylesheet" />
+    <link href="{{ asset('site/css/flexslider.css')}}" rel="stylesheet" />
+    <link href="{{ asset('site/css/style.css')}}" rel="stylesheet" />
+    <!-- Theme skin -->
+    <link href="{{ asset('site/skins/default.css')}}" rel="stylesheet" />
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('site/ico/apple-touch-icon-144-precomposed.png')}}" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('site/ico/apple-touch-icon-114-precomposed.png')}}" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('site/ico/apple-touch-icon-72-precomposed.png')}}" />
+    <link rel="apple-touch-icon-precomposed" href="{{ asset('site/ico/apple-touch-icon-57-precomposed.png')}}" />
+{% endblock %}
+
+{% block body %}
+
+    <div id="wrapper">
+        <!-- toggle top area -->
+        <div class="hidden-top">
+            <div class="hidden-top-inner container">
+                <div class="row">
+                    <div class="span12">
+                        <MARQUEE behavior = "slide" direction="left"><strong>N'hésitez pas à nous contacter pour plus de renseignement &nbsp</strong>
+                        Notre siège: Zone industrielle de Lomé,08 BP : 8535, Lomé - Togo&nbsp
+                        Appelez-nous : &nbsps <i class="icon-phone"></i> (228) 22 27 20 00</MARQUEE>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end toggle top area -->
+        <!-- start header -->
+        <header>
+            <div class="container ">
+                <!-- hidden top area toggle link -->
+                <div id="header-hidden-link">
+                    <a href="#" class="toggle-link" title="Click me you'll get a surprise" data-target=".hidden-top"><i></i>Open</a>
+                </div>
+                <!-- end toggle link -->
+                <div class="row nomargin">
+                    <div class="span12">
+                        <div class="headnav">
+                            <ul>
+                                <li><a href="#mySignin" data-toggle="modal">Newsletter</a></li>
+                                    {#<li><a href="#mySignup" data-toggle="modal"><i class="icon-user"></i> Sign up</a></li>#}
+                            </ul>
+                        </div>
+                        <!-- Signup Modal -->
+                        {#<div id="mySignup" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySignupModalLabel" aria-hidden="true">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 id="mySignupModalLabel">Create an <strong>account</strong></h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal">
+                                    <div class="control-group">
+                                        <label class="control-label" for="inputEmail">Email</label>
+                                        <div class="controls">
+                                            <input type="text" id="inputEmail" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="inputSignupPassword">Password</label>
+                                        <div class="controls">
+                                            <input type="password" id="inputSignupPassword" placeholder="Password">
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="inputSignupPassword2">Confirm Password</label>
+                                        <div class="controls">
+                                            <input type="password" id="inputSignupPassword2" placeholder="Password">
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <button type="submit" class="btn">Sign up</button>
+                                        </div>
+                                        <p class="aligncenter margintop20">
+                                            Already have an account?
+                                            <a href="#mySignin" data-dismiss="modal" aria-hidden="true" data-toggle="modal">Sign in</a>
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>#}
+                        <!-- end signup modal -->
+                        <!-- Sign in Modal -->
+                        <div id="mySignin" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySigninModalLabel" aria-hidden="true">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 id="mySigninModalLabel">Newsletter <strong>abonnez-vous</strong></h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal">
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="inputResetEmail">Email</label>
+                                        <div class="controls">
+                                            <input type="text" id="inputResetEmail" placeholder="Email">
+                                        </div        
+                                    </div                                       
+
+
+                                    {#<div class="control-group">
+                                        <label class="control-label" for="inputText">Username</label>
+                                        <div class="controls">
+                                            <input type="text" id="inputText" placeholder="Username">
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="inputSigninPassword">Password</label>
+                                        <div class="controls">
+                                            <input type="password" id="inputSigninPassword" placeholder="Password">
+                                        </div>
+                                    </div>#}
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <button type="submit" class="btn">S'abonner</button>
+                                        </div>
+                                        {#<p class="aligncenter margintop20">
+                                            Forgot password? <a href="#myReset" data-dismiss="modal" aria-hidden="true" data-toggle="modal">Reset</a>
+                                        </p>#}
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- end signin modal -->
+                        <!-- Reset Modal -->
+                        <div id="myReset" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="myResetModalLabel" aria-hidden="true">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 id="myResetModalLabel">Reset your <strong>password</strong></h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal">
+                                    <div class="control-group">
+                                        <label class="control-label" for="inputResetEmail">Email</label>
+                                        <div class="controls">
+                                            <input type="text" id="inputResetEmail" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <button type="submit" class="btn">Reset password</button>
+                                        </div>
+                                        <p class="aligncenter margintop20">
+                                            We will send instructions on how to reset your password to your inbox
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- end reset modal -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span4">
+                        <div class="logo">
+                            <a href="{{path('accueil_sodigaz')}}"><img src="{{ asset('site/img/logo.png')}}" height="50px" width="150px" alt="" class="logo" /></a>
+                        </div>
+                    </div>
+                    <div class="span8">
+                        <div class="navbar navbar-static-top">
+                            <div class="navigation">
+                                <nav>
+                                    {% import "menu_site.html" as html %}
+                                    {% for parent in vglobal.getMenuArbre %}
+                                        <ul class="nav topnav">
+                                            <li class="dropdown">
+                                                <a href="{{ parent.menu.lien }}">
+                                                    <strong>{{ parent.menu.titre }}</strong>
+                                                    {% if parent.arbre|length > 0 %}<i class="icon-angle-down"></i>{% endif %}
+                                                </a>
+                                                {% if parent.arbre|length > 0 %}
+                                                    <ul class="dropdown-menu">
+                                                        {{ html.afficherArbre(parent) }}
+                                                    </ul>
+                                                {% endif %}
+                                            </li>
+                                        </ul>
+                                    {% endfor %}
+                                </nav>
+                            </div>
+                            <!-- end navigation -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- end header -->
+
+        {% block Panel %}
+
+        {% endblock Panel %}
+
+
+        {% block content %}
+
+        {% endblock content %}
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="span3">
+                        <div class="widget">
+                            <h5 class="widgetheading">Sodigaz</h5>
+                            <ul class="link-list">
+                                <li><a href="#">A propos</a></li>
+                                <li><a href="#">Notre histoire</a></li>
+                                <li><a href="#">Nos services</a></li>
+                                <li><a href="#">Notre objectif</a></li>
+                                <li><a href="#">Opportunité</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="span3">
+                        <div class="widget">
+                            <h5 class="widgetheading">Assistance</h5>
+                            <ul class="link-list">
+                                <li><a href="#">Actualités</a></li>
+                                <li><a href="#">Conseils</a></li>
+                                <li><a href="#">Les distributeurs</a></li>
+                                <li><a href="#">Articles</a></li>
+                                <li><a href="#">Nos logiciels clients</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="span3">
+                        <div class="widget">
+                            <h5 class="widgetheading">Galeries</h5>
+                            <div class="flickr_badge">
+                                <script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=8&amp;display=random&amp;size=s&amp;layout=x&amp;source=user&amp;user=34178660@N03">
+
+                                </script>
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span3">
+                        <div class="widget">
+                            <h5 class="widgetheading">Prenez contact avec nous</h5>
+                            <address>
+                                <strong>Zone industrielle de Lomé</strong><br>
+                                Route d'Aného, 08 BP : 8535, Lomé - Togo<br>
+                            </address>
+
+                            <p>
+                                <i class="icon-phone"></i> (228) 22 27 20 00 - (228) 22 39 32 24 <br>
+                                <i class="icon-phone"></i> (228) 22 27 20 02<br>
+                                <i class="icon-phone"></i> (228) 22 39 34 10 - (228) 99 48 00 10 <br>
+                                <i class="icon-envelope-alt"></i> info@sodigaz.com
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="sub-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="span6">
+                            <div class="copyright">
+                                <p>
+                                    <span>&copy; Oseor 2018- Tous drois réservéss</span>
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="span6">
+                            <ul class="social-network">
+                                <li><a href="#" data-placement="bottom" title="Facebook"><i class="icon-facebook icon-square"></i></a></li>
+                                <li><a href="#" data-placement="bottom" title="Twitter"><i class="icon-twitter icon-square"></i></a></li>
+                                <li><a href="#" data-placement="bottom" title="Linkedin"><i class="icon-linkedin icon-square"></i></a></li>
+                                <li><a href="#" data-placement="bottom" title="Pinterest"><i class="icon-pinterest icon-square"></i></a></li>
+                                <li><a href="#" data-placement="bottom" title="Google plus"><i class="icon-google-plus icon-square"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <a href="#" class="scrollup"><i class="icon-chevron-up icon-square icon-32 active"></i></a>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <!-- javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ asset('site/js/jquery.js')}}"></script>
+    <script src="{{ asset('site/js/jquery.easing.1.3.js')}}"></script>
+    <script src="{{ asset('site/js/bootstrap.js')}}"></script>
+    <script src="{{ asset('site/js/jcarousel/jquery.jcarousel.min.js')}}"></script>
+    <script src="{{ asset('site/js/jquery.fancybox.pack.js')}}"></script>
+    <script src="{{ asset('site/js/jquery.fancybox-media.js')}}"></script>
+    <script src="{{ asset('site/js/google-code-prettify/prettify.js')}}"></script>
+    <script src="{{ asset('site/js/portfolio/jquery.quicksand.js')}}"></script>
+    <script src="{{ asset('site/js/portfolio/setting.js')}}"></script>
+    <script src="{{ asset('site/js/jquery.flexslider.js')}}"></script>
+    <script src="{{ asset('site/js/jquery.nivo.slider.js')}}"></script>
+    <script src="{{ asset('site/js/modernizr.custom.js')}}"></script>
+    <script src="{{ asset('site/js/jquery.ba-cond.min.js')}}"></script>
+    <script src="{{ asset('site/js/jquery.slitslider.js')}}"></script>
+    <script src="{{ asset('site/js/animate.js')}}"></script>
+
+    <!-- Template Custom JavaScript File -->
+    <script src="{{ asset('site/js/custom.js')}}"></script>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+                                    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+                                    (function () {
+                                        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+                                        s1.async = true;
+                                        s1.src = 'https://embed.tawk.to/5bb1d88d8a438d2b0cdfe1e3/default';
+                                        s1.charset = 'UTF-8';
+                                        s1.setAttribute('crossorigin', '*');
+                                        s0.parentNode.insertBefore(s1, s0);
+                                    })();
+    </script>
+    <!--End of Tawk.to Script-->
+
+{% endblock %}
+

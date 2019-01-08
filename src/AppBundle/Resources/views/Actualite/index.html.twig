@@ -1,0 +1,57 @@
+{% extends '@App\\index.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <!-- MDBootstrap Datatables  -->
+    <link href="{{asset('admin/css/addons/datatables.min.css" rel="stylesheet')}}">
+{% endblock %}
+
+{% block pageName %}
+    <h3 class="page-header"><i class="fa fa fa-bars"></i>
+        Actualite
+    </h3>
+{% endblock %}
+
+{% block panelHeading %}
+
+    Liste des actualites
+
+{% endblock %}
+
+{% block content %}
+    <fieldset legend="Gestion de actualite">
+        <div class="panel panel-success">    
+            <a class="btn btn-info" href="{{ path('actualite_new') }}">Nouvelle actualite</a><br><br>
+            {% for actualite in actualites %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="col-md-4 col-sm-3">
+                        <img src="{{ asset('uploads/actualites/' ~ actualite.image) }}" width="100%" height="170">
+                    </div>
+                    <div class="col-md-8 col-sm-9">
+                        <a title="cliquez pour voir" href='{{ path('actualite_display_sodigaz', {'slug':actualite.slug}) }}' class='actualite_titre' target="_blank"><h3><strong>{{ actualite.titre }}</strong></h3></a>
+                        <p>{{ actualite.extrait }}</p>
+                        <div>
+                            <a class="btn btn-success" href="{{ path('actualite_edit', { 'id': actualite.id }) }}"><i class="fa fa-pencil"></i></a> 
+                            <a onclick="return confirm('Etes-vous sûr de vouloir supprimer ce actualite')" class="btn btn-danger" href="{{ path('actualite_delete', { 'id': actualite.id }) }}"><i class="icon_close_alt2"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                        <br>
+                        <hr>
+                        <br>
+            {% endfor %}
+    </fieldset>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{asset('admin/js/addons/datatables.min.js')}}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dtBasicExample').DataTable();
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+{% endblock %}

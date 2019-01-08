@@ -1,0 +1,70 @@
+{% extends '@App\\index.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{asset('admin/css/lightbox.css')}}">
+    <!-- MDBootstrap Datatables  -->
+    <link href="{{asset('admin/css/addons/datatables.min.css" rel="stylesheet')}}">
+{% endblock %}
+
+{% block pageName %}
+    <h3 class="page-header"><i class="fa fa fa-bars"></i>
+        Partenaire
+    </h3>
+{% endblock %}
+
+{% block panelHeading %}
+
+    Liste des partenaires
+
+{% endblock %}
+
+{% block content %}
+    <fieldset legend="Gestion de partenaire">
+        <div class="panel panel-success">    
+            <a class="btn btn-info" href="{{ path('partenaire_new') }}">Nouveau partenaire</a>
+            <div class="table-responsive">
+                <table id="dtBasicExample" class="table table-bordered table-striped table-sm" cellspacing="0" width="100%">
+                    <thead class="black white-text">
+                        <tr>
+                            <th>Id</th>
+                            <th>Image</th>
+                            <th>Nom</th>
+                            <th>lien</th>
+                            <th>Catégorie partenaire</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for partenaire in partenaires %}
+                            <tr>
+                                <td>{{ partenaire.id }}</td>
+                                <td>
+                                    <img src="{{ asset('uploads/partenaires/'~partenaire.image)}}" alt ="" height="15px">
+                                </td>
+                                <td>{{ partenaire.nom|capitalize }}</td>
+                                <td>{{ partenaire.lien }}</td>
+                                <td>{{ partenaire.categoriePartenaire.libelle|capitalize }}</td>
+                                <td>
+                                    <a class="btn btn-success" href="{{ path('partenaire_edit', { 'id': partenaire.id }) }}"><i class="fa fa-pencil"></i></a> 
+                                    <a onclick="return confirm('Etes-vous sûr de vouloir supprimer ce partenaire')" class="btn btn-danger" href="{{ path('partenaire_delete', { 'id': partenaire.id }) }}"><i class="icon_close_alt2"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+    </fieldset>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{asset('admin/js/lightbox.js')}}"></script>
+    <script type="text/javascript" src="{{asset('admin/js/addons/datatables.min.js')}}"></script>
+    <script>
+                                        $(document).ready(function () {
+                                            $('#dtBasicExample').DataTable();
+                                            $('.dataTables_length').addClass('bs-select');
+                                        });
+    </script>
+{% endblock %}

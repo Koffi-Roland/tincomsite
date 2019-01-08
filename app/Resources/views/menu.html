@@ -1,0 +1,13 @@
+{% macro afficherArbre(menu) %}
+    {% import _self as html %}
+    {% for fils in menu.arbre %}
+        <li>
+            <a href="{{ fils.menu.lien }}">{{ fils.menu.titre }}</a>&nbsp;&nbsp;<a href="{{ path('menu_delete', {'id' : fils.menu.id}) }}" onclick="return confirm('Êtes vous sûr de vouloir supprimer ce menu?');" style="color: red;">Supprimer</a>
+            {% if fils.arbre|length > 0 %}
+            <ul>
+                {{ html.afficherArbre(fils) }}
+            </ul>
+        {% endif %}
+        </li>
+    {% endfor %}
+{% endmacro %}

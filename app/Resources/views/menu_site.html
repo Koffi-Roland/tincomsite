@@ -1,0 +1,14 @@
+{% macro afficherArbre(menu) %}
+    {% import _self as html %}
+    {% for fils in menu.arbre %}
+        <li>
+            <a href="{{ fils.menu.lien }}">{{ fils.menu.titre }}</a>
+            {% if fils.arbre|length > 0 %}
+            <i class="icon-angle-right"></i>
+            <ul class="dropdown-menu">
+            {{ html.afficherArbre(fils) }}
+            </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+{% endmacro %}

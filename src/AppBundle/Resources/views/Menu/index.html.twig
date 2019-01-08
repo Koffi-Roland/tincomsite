@@ -1,0 +1,274 @@
+{% extends '@App\\index.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <!-- MDBootstrap Datatables  -->
+    <link href="{{asset('admin/css/addons/datatables.min.css" rel="stylesheet')}}">
+{% endblock %}
+
+{% block pageName %}
+    <h3 class="page-header"><i class="fa fa fa-bars"></i>
+        Menus
+    </h3>
+{% endblock %}
+
+{% block panelHeading %}
+    Ajouter un menu
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            <h4 class="panel-title">
+                                Page simple
+                            </h4>
+                        </a>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <form method='post' action="{{ path('menu_new') }}">
+                                <input type="hidden" name="type" value="page" />
+                                <div class='form-group' style='max-height: 200px; overflow: auto;'>
+                                {% for page in pages %}
+                                    <div class='radio'>
+                                        <label><input type='radio' required name='page' value='{{ page.slug }}' />{{ page.libelle }}</label>
+                                    </div>
+                                {% endfor %}
+                                </div>
+                                <div class='form-group'>
+                                    <label>Sous</label>
+                                    <select name='parent' class='form-control'>
+                                        <option value='0'></option>
+                                        {% for parent in parents %}
+                                        <option value='{{ parent.id }}'>{{ parent.titre }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class='form-group'>
+                                    <label>Avant</label>
+                                    <select name='avant' class='form-control'>
+                                        <option value='0'></option>
+                                        {% for parent in parents %}
+                                        <option value='{{ parent.id }}'>{{ parent.titre }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <button type='submit' class='btn btn-primary'>Ajouter</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                            <h4 class="panel-title">
+                                Page d'accueil
+                            </h4>
+                        </a>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <form method='post' action="{{ path('menu_new') }}">
+                                <input type="hidden" name="type" value="accueil" />
+                                <div class='form-group'>
+                                    <label>Sous</label>
+                                    <select name='parent' class='form-control'>
+                                        <option value='0'></option>
+                                        {% for parent in parents %}
+                                        <option value='{{ parent.id }}'>{{ parent.titre }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class='form-group'>
+                                    <label>Avant</label>
+                                    <select name='avant' class='form-control'>
+                                        <option value='0'></option>
+                                        {% for parent in parents %}
+                                        <option value='{{ parent.id }}'>{{ parent.titre }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <button type='submit' class='btn btn-primary'>Ajouter</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                            <h4 class="panel-title">
+                                Page des actualités
+                            </h4>
+                        </a>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <form method='post' action="{{ path('menu_new') }}">
+                                <input type="hidden" name="type" value="actualite" />
+                                <div class='form-group'>
+                                    <label>Sous</label>
+                                    <select name='parent' class='form-control'>
+                                        <option value='0'></option>
+                                        {% for parent in parents %}
+                                        <option value='{{ parent.id }}'>{{ parent.titre }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class='form-group'>
+                                    <label>Avant</label>
+                                    <select name='avant' class='form-control'>
+                                        <option value='0'></option>
+                                        {% for parent in parents %}
+                                        <option value='{{ parent.id }}'>{{ parent.titre }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <button type='submit' class='btn btn-primary'>Ajouter</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                            <h4 class="panel-title">
+                                Page des produits
+                            </h4>
+                        </a>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <form method='post' action="{{ path('menu_new') }}">
+                                <input type="hidden" name="type" value="produits" />
+                                <div class='form-group'>
+                                    <label>Sous</label>
+                                    <select name='parent' class='form-control'>
+                                        <option value='0'></option>
+                                        {% for parent in parents %}
+                                        <option value='{{ parent.id }}'>{{ parent.titre }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class='form-group'>
+                                    <label>Avant</label>
+                                    <select name='avant' class='form-control'>
+                                        <option value='0'></option>
+                                        {% for parent in parents %}
+                                        <option value='{{ parent.id }}'>{{ parent.titre }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <button type='submit' class='btn btn-primary'>Ajouter</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                            <h4 class="panel-title">
+                                Lien personnalisé
+                            </h4>
+                        </a>
+                    </div>
+                    <div id="collapseFive" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <form method='post' action="{{ path('menu_new') }}">
+                                <input type="hidden" name="type" value="lien" />
+                                <div class='form-group'>
+                                    <label>Titre</label>
+                                    <input type="text" class="form-control" name="titre" required value="" />
+                                </div>
+                                <div class='form-group'>
+                                    <label>Url(le lien derrière le menu)</label>
+                                    <input type="text" class="form-control" required  name="url" value="#" required />
+                                </div>
+                                <div class="form-group">
+                                    <label>Sous</label>
+                                    <select name='parent' class='form-control'>
+                                        <option value='0'></option>
+                                        {% for parent in parents %}
+                                        <option value='{{ parent.id }}'>{{ parent.titre }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class='form-group'>
+                                    <label>Avant</label>
+                                    <select name='avant' class='form-control'>
+                                        <option value='0'></option>
+                                        {% for parent in parents %}
+                                        <option value='{{ parent.id }}'>{{ parent.titre }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <button type='submit' class='btn btn-primary'>Ajouter</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h3>Menu actuel</h3>
+            {% import "menu.html" as html %}
+            {% for parent in vglobal.getMenuArbre %}
+                <ul>
+                    {% if parent.arbre|length > 0 %}
+                        <li>
+                            <a href="{{ parent.menu.lien }}">{{ parent.menu.titre }}</a>&nbsp;&nbsp;<a href="{{ path('menu_delete', {'id':parent.menu.id}) }}" onclick="return confirm('Êtes vous sûr de vouloir supprimer ce menu?');" style="color: red;">Supprimer</a>
+                            <ul>
+                                {{ html.afficherArbre(parent) }}
+                            </ul>
+                        </li>
+                    {% else %}
+                    <li>
+                        <a href="{{ parent.menu.lien }}">{{ parent.menu.titre }}</a>&nbsp;&nbsp;<a href="{{ path('menu_delete', {'id':parent.menu.id}) }}" onclick="return confirm('Êtes vous sûr de vouloir supprimer ce menu?');" style="color: red;">Supprimer</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $("select[name*='parent']").change(function(){
+            var form = $(this).parent().parent();
+            var avant = form.find("select[name*='avant']");
+            var valeur = $(this).find('option:selected').val();
+            //alert(valeur);
+            
+            $.ajax({
+                type: 'GET',
+                url: '{{ path("menu_fils")|escape("js") }}',
+                dataType: "json",
+                data: {id: valeur},
+                beforeSend: function() {
+                    avant.prop('disabled', 'disabled');
+                    form.find('button').prop('disabled', 'disabled');
+                },
+                success: function(data){
+                    avant.empty();
+                    avant.append("<option value='0'></option>");
+                    $.each(data, function(index, value){
+                        avant.append('<option value='+ value.f_id +'>'+ value.f_titre + '</option>');
+                    });
+                    avant.prop('disabled', '');
+                    form.find('button').prop('disabled', '');
+                },
+                error: function() {
+                    alert("Erreur de réseau. \nVérifiez votre connexion internet");
+                    avant.prop('disabled', '');
+                    form.find('button').prop('disabled', '');
+                }
+              });
+            
+        });
+    </script>
+{% endblock %}
